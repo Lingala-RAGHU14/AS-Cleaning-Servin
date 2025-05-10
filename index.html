@@ -16,39 +16,191 @@
 }
 
     </script>
-
+    <style>
+        .footer-gradient {
+            background: linear-gradient(180deg, #1e3a8a 0%, #172554 100%);
+        }
+        .btn-blue-gradient {
+            background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
+        }
+        .btn-blue-gradient:hover {
+            background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+        }
+        .social-icon {
+            transition: all 0.3s ease;
+        }
+        .social-icon:hover {
+            transform: translateY(-5px);
+        }
+        .footer-wave {
+            position: absolute;
+            top: -50px;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+        }
+        .footer-wave svg {
+            position: relative;
+            display: block;
+            width: calc(100% + 1.3px);
+            height: 50px;
+        }
+        .newsletter-input:focus {
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            light: '#e0f7fa',
+                            DEFAULT: '#03a9f4',
+                            dark: '#01579b',
+                        },
+                    },
+                    animation: {
+                        'float': 'float 3s ease-in-out infinite',
+                        'pulse-soft': 'pulse-soft 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        },
+                        'pulse-soft': {
+                            '0%, 100%': { opacity: 1 },
+                            '50%': { opacity: 0.7 },
+                        }
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        .bg-gradient-nav {
+            background: linear-gradient(135deg, #e0f7fa 0%, #bbdefb 100%);
+        }
+        
+        .nav-item::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background: linear-gradient(to right, #03a9f4, #00bcd4);
+            transition: width 0.3s ease;
+            border-radius: 4px;
+        }
+        
+        .nav-item:hover::after {
+            width: 100%;
+        }
+        
+        .bubble {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.4);
+            animation: bubble-rise 8s infinite ease-in;
+            opacity: 0;
+        }
+        
+        @keyframes bubble-rise {
+            0% {
+                transform: scale(0) translateY(0);
+                opacity: 0;
+            }
+            50% {
+                opacity: 0.6;
+            }
+            100% {
+                transform: scale(1) translateY(-100vh);
+                opacity: 0;
+            }
+        }
+    </style>
+ <style>
+    .service-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(0, 164, 219, 0.2);
+    }
+    .service-card {
+        transition: all 0.3s ease;
+    }
+    .bg-light-blue-gradient {
+        background: linear-gradient(135deg, #e6f7ff 0%, #ccecff 100%);
+    }
+    .btn-blue-gradient {
+        background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
+    }
+    .btn-blue-gradient:hover {
+        background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+    }
+</style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
-    <nav class="navbar">
-        <div class="logo">
-            <span class="logo-icon">💧</span>
-            <span class="logo-text">AS Cleaning Services</span> 
-            <Span class=""></Span>
+    <nav class="fixed top-0 left-0 w-full flex justify-between items-center px-8 py-6 bg-gradient-nav shadow-md z-50 overflow-hidden transition-all duration-300 ease-in-out">
+        <!-- Logo with animation -->
+        <div class="flex items-center group">
+            <span class="mr-2 text-3xl animate-float">💧</span>
+            <span class="text-2xl font-bold text-primary-dark transition-all duration-300 group-hover:text-primary">AS Cleaning Services</span>
         </div>
         
-        <ul class="nav-links">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#about">About Us</a></li>
-            <li><a href="#testimonials">Testimonials</a></li>
-            <li><a href="#contact">Contact Us</a></li>
+        <!-- Navigation Links -->
+        <ul class="hidden md:flex items-center space-x-8">
+            <li><a href="#home" class="nav-item relative py-2 text-primary-dark font-medium text-lg hover:text-primary transition-all duration-300">Home</a></li>
+            <li><a href="#services" class="nav-item relative py-2 text-primary-dark font-medium text-lg hover:text-primary transition-all duration-300">Services</a></li>
+            <li><a href="#about" class="nav-item relative py-2 text-primary-dark font-medium text-lg hover:text-primary transition-all duration-300">About Us</a></li>
+            <li><a href="#testimonials" class="nav-item relative py-2 text-primary-dark font-medium text-lg hover:text-primary transition-all duration-300">Testimonials</a></li>
+            <li><a href="#contact" class="nav-item relative py-2 text-primary-dark font-medium text-lg hover:text-primary transition-all duration-300">Contact Us</a></li>
         </ul>
         
-        <a href="https://wa.me/+918179867825 " class="cta-button">Book Now</a>
+        <!-- CTA Button with enhanced hover effects -->
+        <a href="https://wa.me/+918179867825" class="hidden md:block px-6 py-3 bg-gradient-to-r from-primary to-blue-500 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 relative overflow-hidden group">
+            <span class="relative z-10">Book Now</span>
+            <span class="absolute inset-0 bg-gradient-to-r from-blue-400 to-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+        </a>
         
-        <div class="burger">
-            <div class="line1"></div>
-            <div class="line2"></div>
-            <div class="line3"></div> 
+        <!-- Mobile menu button -->
+        <div class="md:hidden flex items-center">
+            <button id="menu-toggle" class="focus:outline-none">
+                <div class="w-6 h-0.5 bg-primary-dark mb-1.5 transition-all duration-300"></div>
+                <div class="w-6 h-0.5 bg-primary-dark mb-1.5 transition-all duration-300"></div>
+                <div class="w-6 h-0.5 bg-primary-dark transition-all duration-300"></div>
+            </button>
         </div>
     </nav>
-    <div class="bubbles">
+    
+    <!-- Mobile Navigation Menu -->
+    <div id="mobile-menu" class="fixed top-24 right-0 w-full bg-white/95 shadow-lg rounded-b-lg transform translate-x-full transition-transform duration-300 ease-in-out z-40">
+        <ul class="flex flex-col items-center py-4">
+            <li class="my-3"><a href="#home" class="text-primary-dark font-medium text-lg">Home</a></li>
+            <li class="my-3"><a href="#services" class="text-primary-dark font-medium text-lg">Services</a></li>
+            <li class="my-3"><a href="#about" class="text-primary-dark font-medium text-lg">About Us</a></li>
+            <li class="my-3"><a href="#testimonials" class="text-primary-dark font-medium text-lg">Testimonials</a></li>
+            <li class="my-3"><a href="#contact" class="text-primary-dark font-medium text-lg">Contact Us</a></li>
+            <li class="mt-4 mb-2">
+                <a href="https://wa.me/+918179867825" class="px-6 py-3 bg-gradient-to-r from-primary to-blue-500 text-white font-semibold rounded-full shadow-lg">Book Now</a>
+            </li>
+        </ul>
     </div>
-   <section id="home" class="pt-24 md:pt-32 pb-16 md:pb-24 bg-gradient-to-r from-blue-100 to-green-100">
-        <div class="container mx-auto px-4">
-            <div class="flex flex-col md:flex-row items-center">
-                <div class="md:w-1/2 mb-8 md:mb-0 hero-text">
+    
+    <!-- Bubble animation container -->
+    <div class="bubbles fixed inset-0 pointer-events-none overflow-hidden z-30">
+        <!-- Bubbles will be added via JavaScript -->
+    </div>
+    
+   
+   <section id="home" class="pt-32 md:pt-32 pb-16 md:pb-24 bg-gradient-to-r from-blue-100 to-green-100">
+        <div class="container flex justify-center  items-center mx-auto px-4">
+            <div class="flex flex-col justify-center md:flex-row items-center">
+                <div class="md:w-4/5 mb-8 md:mb-0 hero-text">
                     <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-dark mb-4">Professional <span class="text-primary">Cleaning</span> & <span class="text-secondary">Serving</span> Solutions</h1>
                     <p class="text-lg text-gray-600 mb-6">We transform spaces with quality cleaning that exceeds expectations. Your satisfaction is our top priority.</p>
                     <div class="flex flex-col sm:flex-row gap-4">
@@ -106,183 +258,271 @@
         </div>
     </section>
 
-        <section id="services" class="services-section">
-            <div class="section-header">
-                <h2>Our Professional Services</h2>
-                <p>Discover our range of premium cleaning and serving solutions tailored to meet your needs.</p>
+    <section id="services" class="py-16 px-4 md:px-8 lg:px-16">
+        <div class="container mx-auto">
+            <!-- Section Header -->
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-blue-800 mb-4">Our Professional Services</h2>
+                <div class="w-24 h-1 bg-blue-500 mx-auto mb-6"></div>
+                <p class="text-blue-700 text-lg max-w-2xl mx-auto">Discover our range of premium cleaning and serving solutions tailored to meet your needs.</p>
             </div>
 
-            <div class="services-container">
-                <div class="service-card" data-service="residential">
-                                        <div class="service-image" style="background-image: url(assets.svg/Residential.jpg)"></div>
-                  <div class="service-content">
-                        <h3 class="service-title">Residential Cleaning</h3>
-                        <p class="service-description">Comprehensive cleaning services for homes of all sizes. We bring sparkle to every corne revery.</p>
-                        <div class="service-meta">
-                            <div class="service-price">RS 120</div>
-                            <div class="service-rating">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star-half-alt"></i>
-                                <span>(124)</span>
+            <!-- Services Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Residential Cleaning -->
+                <div class="service-card bg-white rounded-xl overflow-hidden shadow-lg" data-service="residential">
+                    <div class="h-56 bg-cover bg-center" style="background-image: url('assets.svg/Residential.jpg')"></div>
+                    <div class="p-6">
+                        <div class="inline-block px-3 py-1 text-xs font-semibold text-blue-800 bg-blue-100 rounded-full mb-4">Most Popular</div>
+                        <h3 class="text-xl font-bold text-blue-900 mb-2">Residential Cleaning</h3>
+                        <p class="text-blue-700 mb-6">Comprehensive cleaning services for homes of all sizes. We bring sparkle to every corner.</p>
+                        <div class="flex items-center justify-between">
+                            <div class="text-blue-800 font-bold text-lg">₹120</div>
+                            <div class="flex items-center">
+                                <div class="flex text-yellow-400 mr-2">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                                <span class="text-blue-700 text-sm">(124)</span>
                             </div>
-                            <a href="https://wa.me/+918179867825 " class="cta-button">Book Now</a>
                         </div>
-
+                        <a href="https://wa.me/+918179867825" class="mt-4 block w-full py-3 text-center text-white font-medium rounded-lg btn-blue-gradient transform hover:scale-105 transition duration-300">
+                            <i class="fab fa-whatsapp mr-2"></i> Book Now
+                        </a>
                     </div>
                 </div>
-
-                <div class="service-card" data-service="commercial">
-                    <div class="service-image" style="background-image: url(assets.svg/Residential.jpg)"></div>
-                    <div class="service-content">
-                        <h3 class="service-title">Commercial Cleaning</h3>
-                        <p class="service-description">Professional cleaning for offices, retail spaces, and commercial properties to every every corner..</p>
-                        <div class="service-meta">
-                            <div class="service-price">RS 200</div>
-                            <div class="service-rating">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <span>(98)</span>
+                
+                <!-- Commercial Cleaning -->
+                <div class="service-card bg-white rounded-xl overflow-hidden shadow-lg" data-service="commercial">
+                    <div class="h-56 bg-cover bg-center" style="background-image: url('assets.svg/commerical-event.jpg')"></div>
+                    <div class="p-6">
+                        <div class="inline-block px-3 py-1 text-xs font-semibold text-blue-800 bg-blue-100 rounded-full mb-4">Business</div>
+                        <h3 class="text-xl font-bold text-blue-900 mb-2">Commercial Cleaning</h3>
+                        <p class="text-blue-700 mb-6">Professional cleaning for offices, retail spaces, and commercial properties to every corner.</p>
+                        <div class="flex items-center justify-between">
+                            <div class="text-blue-800 font-bold text-lg">₹200</div>
+                            <div class="flex items-center">
+                                <div class="flex text-yellow-400 mr-2">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <span class="text-blue-700 text-sm">(98)</span>
                             </div>
-                            <a href="https://wa.me/+918179867825 " class="cta-button">Book Now</a>
-
                         </div>
+                        <a href="https://wa.me/+918179867825" class="mt-4 block w-full py-3 text-center text-white font-medium rounded-lg btn-blue-gradient transform hover:scale-105 transition duration-300">
+                            <i class="fab fa-whatsapp mr-2"></i> Book Now
+                        </a>
                     </div>
                 </div>
-
-                <div class="service-card" data-service="event-serving">
-                    <div class="service-image" style="background-image: url(assets.svg/freepik__the-style-is-candid-image-photography-with-natural__74524.jpeg)"></div>
-                    <div class="service-content">
-                        <h3 class="service-title">Event Serving</h3>
-                        <p class="service-description">Professional serving staff for weddings, parties, corporate events, and special occasions.</p>
-                        <div class="service-meta">
-                            <div class="service-price">RS 150</div>
-                            <div class="service-rating">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <span>(156)</span>
+                
+                <!-- Event Serving -->
+                <div class="service-card bg-white rounded-xl overflow-hidden shadow-lg" data-service="event-serving">
+                    <div class="h-56 bg-cover bg-center" style="background-image: url('assets.svg/freepik__the-style-is-candid-image-photography-with-natural__74524.jpeg')"></div>
+                    <div class="p-6">
+                        <div class="inline-block px-3 py-1 text-xs font-semibold text-blue-800 bg-blue-100 rounded-full mb-4">Events</div>
+                        <h3 class="text-xl font-bold text-blue-900 mb-2">Event Serving</h3>
+                        <p class="text-blue-700 mb-6">Professional serving staff for weddings, parties, corporate events, and special occasions.</p>
+                        <div class="flex items-center justify-between">
+                            <div class="text-blue-800 font-bold text-lg">₹150</div>
+                            <div class="flex items-center">
+                                <div class="flex text-yellow-400 mr-2">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <span class="text-blue-700 text-sm">(156)</span>
                             </div>
-                            <a href="https://wa.me/+918179867825 " class="cta-button">Book Now</a>
-
-                        </div> 
-                    </div>
-                </div>
-
-                <div class="service-card" data-service="deep-cleaning">
-                    <div class="service-image" style="background-image: url(assets.svg/Deep-Cleaning.jpg)"></div>
-                    <div class="service-content">
-                        <h3 class="service-title">Deep Cleaning</h3>
-                        <p class="service-description">Intensive cleaning service that targets the deep grime and hidden dirt in your space to every corner..</p>
-                        <div class="service-meta">
-                            <div class="service-price">RS 180</div>
-                            <div class="service-rating">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star-half-alt"></i>
-                                <span>(87)</span>
-                            </div>
-                            <a href="https://wa.me/+919392349789 " class="cta-button">Book Now</a>
-
                         </div>
+                        <a href="https://wa.me/+918179867825" class="mt-4 block w-full py-3 text-center text-white font-medium rounded-lg btn-blue-gradient transform hover:scale-105 transition duration-300">
+                            <i class="fab fa-whatsapp mr-2"></i> Book Now
+                        </a>
                     </div>
                 </div>
-                 <div class="service-card" data-service="move-in-out">
-                    <div class="service-image" style="background-image: url(assets.svg/Move-inout.jpg)"></div>
-                    <div class="service-content">
-                        <h3 class="service-title">Move-in/out Cleaning</h3>
-                        <p class="service-description">Specialized cleaning services for when you're moving in or out of a property.</p>
-                        <div class="service-meta">
-                            <div class="service-price">RS 2500</div>
-                            <div class="service-rating">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <span>(112)</span>
+                
+                <!-- Deep Cleaning -->
+                <div class="service-card bg-white rounded-xl overflow-hidden shadow-lg" data-service="deep-cleaning">
+                    <div class="h-56 bg-cover bg-center" style="background-image: url('assets.svg/Deep-Cleaning.jpg')"></div>
+                    <div class="p-6">
+                        <div class="inline-block px-3 py-1 text-xs font-semibold text-blue-800 bg-blue-100 rounded-full mb-4">Premium</div>
+                        <h3 class="text-xl font-bold text-blue-900 mb-2">Deep Cleaning</h3>
+                        <p class="text-blue-700 mb-6">Intensive cleaning service that targets the deep grime and hidden dirt in your space.</p>
+                        <div class="flex items-center justify-between">
+                            <div class="text-blue-800 font-bold text-lg">₹180</div>
+                            <div class="flex items-center">
+                                <div class="flex text-yellow-400 mr-2">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                                <span class="text-blue-700 text-sm">(87)</span>
                             </div>
-                            <a href="https://wa.me/+918179867825 " class="cta-button">Book Now</a>
-
                         </div>
+                        <a href="https://wa.me/+919392349789" class="mt-4 block w-full py-3 text-center text-white font-medium rounded-lg btn-blue-gradient transform hover:scale-105 transition duration-300">
+                            <i class="fab fa-whatsapp mr-2"></i> Book Now
+                        </a>
                     </div>
                 </div>
-
-                <div class="service-card" data-service="catering-support">
-                    <div class="service-image" style="background-image: url(assets.svg/Tank-cleaning.jpg)"></div>
-                    <div class="service-content">
-                        <h3 class="service-title">Water Tank Cleaning</h3>
-                        <p class="service-description">Professional kitchen help and service staff to support your catering needs.</p>
-                        <div class="service-meta">
-                            <div class="service-price">RS 140</div>
-                            <div class="service-rating">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star-half-alt"></i>
-                                <span>(76)</span>
+                
+                <!-- Move-in/out Cleaning -->
+                <div class="service-card bg-white rounded-xl overflow-hidden shadow-lg" data-service="move-in-out">
+                    <div class="h-56 bg-cover bg-center" style="background-image: url('assets.svg/Move-inout.jpg')"></div>
+                    <div class="p-6">
+                        <div class="inline-block px-3 py-1 text-xs font-semibold text-blue-800 bg-blue-100 rounded-full mb-4">Specialized</div>
+                        <h3 class="text-xl font-bold text-blue-900 mb-2">Move-in/out Cleaning</h3>
+                        <p class="text-blue-700 mb-6">Specialized cleaning services for when you're moving in or out of a property.</p>
+                        <div class="flex items-center justify-between">
+                            <div class="text-blue-800 font-bold text-lg">₹2500</div>
+                            <div class="flex items-center">
+                                <div class="flex text-yellow-400 mr-2">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <span class="text-blue-700 text-sm">(112)</span>
                             </div>
-                            <a href="https://wa.me/+918179867825 " class="cta-button">Book Now</a>
-
                         </div>
+                        <a href="https://wa.me/+918179867825" class="mt-4 block w-full py-3 text-center text-white font-medium rounded-lg btn-blue-gradient transform hover:scale-105 transition duration-300">
+                            <i class="fab fa-whatsapp mr-2"></i> Book Now
+                        </a>
                     </div>
                 </div>
-                <div class="service-card" data-service="catering-support">
-                    <div class="service-image" style="background-image: url(assets.svg/Basement-Cleaning.jpg)"></div>
-                    <div class="service-content">
-                        <h3 class="service-title">Basement cleaning</h3>
-                        <p class="service-description">Professional kitchen help and service staff to support your catering needs.</p>
-                        <div class="service-meta">
-                            <div class="service-price">RS 140</div>
-                            <div class="service-rating">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star-half-alt"></i>
-                                <span>(76)</span>
+                
+                <!-- Water Tank Cleaning -->
+                <div class="service-card bg-white rounded-xl overflow-hidden shadow-lg" data-service="water-tank">
+                    <div class="h-56 bg-cover bg-center" style="background-image: url('assets.svg/Tank-cleaning.jpg')"></div>
+                    <div class="p-6">
+                        <div class="inline-block px-3 py-1 text-xs font-semibold text-blue-800 bg-blue-100 rounded-full mb-4">Essential</div>
+                        <h3 class="text-xl font-bold text-blue-900 mb-2">Water Tank Cleaning</h3>
+                        <p class="text-blue-700 mb-6">Professional water tank cleaning service for health and hygiene maintenance.</p>
+                        <div class="flex items-center justify-between">
+                            <div class="text-blue-800 font-bold text-lg">₹140</div>
+                            <div class="flex items-center">
+                                <div class="flex text-yellow-400 mr-2">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                                <span class="text-blue-700 text-sm">(76)</span>
                             </div>
-                            <a href="https://wa.me/+918179867825 " class="cta-button">Book Now</a>
-
                         </div>
+                        <a href="https://wa.me/+918179867825" class="mt-4 block w-full py-3 text-center text-white font-medium rounded-lg btn-blue-gradient transform hover:scale-105 transition duration-300">
+                            <i class="fab fa-whatsapp mr-2"></i> Book Now
+                        </a>
                     </div>
                 </div>
-                <div class="service-card" data-service="catering-support">
-                    <div class="service-image" style="background-image: url(assets.svg/freepik__the-style-is-candid-image-photography-with-natural__74523.jpeg)"></div>
-                    <div class="service-content">
-                        <h3 class="service-title">Catering Support</h3>
-                        <p class="service-description">Professional kitchen help and service staff to support your catering needs.</p>
-                        <div class="service-meta">
-                            <div class="service-price">RS 140</div>
-                            <div class="service-rating">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star-half-alt"></i>
-                                <span>(76)</span>
+                
+                <!-- Basement Cleaning -->
+                <div class="service-card bg-white rounded-xl overflow-hidden shadow-lg" data-service="basement-cleaning">
+                    <div class="h-56 bg-cover bg-center" style="background-image: url('assets.svg/Basement-Cleaning.jpg')"></div>
+                    <div class="p-6">
+                        <div class="inline-block px-3 py-1 text-xs font-semibold text-blue-800 bg-blue-100 rounded-full mb-4">Specialized</div>
+                        <h3 class="text-xl font-bold text-blue-900 mb-2">Basement Cleaning</h3>
+                        <p class="text-blue-700 mb-6">Thorough cleaning and organization services for basement spaces of all sizes.</p>
+                        <div class="flex items-center justify-between">
+                            <div class="text-blue-800 font-bold text-lg">₹140</div>
+                            <div class="flex items-center">
+                                <div class="flex text-yellow-400 mr-2">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                                <span class="text-blue-700 text-sm">(76)</span>
                             </div>
-                            <a href="https://wa.me/+918179867825 " class="cta-button">Book Now</a>
-
                         </div>
+                        <a href="https://wa.me/+918179867825" class="mt-4 block w-full py-3 text-center text-white font-medium rounded-lg btn-blue-gradient transform hover:scale-105 transition duration-300">
+                            <i class="fab fa-whatsapp mr-2"></i> Book Now
+                        </a>
                     </div>
                 </div>
-            </div>
+                
+                <!-- Catering Support -->
+                <div class="service-card bg-white rounded-xl overflow-hidden shadow-lg" data-service="catering-support">
+                    <div class="h-56 bg-cover bg-center" style="background-image: url('assets.svg/freepik__the-style-is-candid-image-photography-with-natural__74523.jpeg')"></div>
+                    <div class="p-6">
+                        <div class="inline-block px-3 py-1 text-xs font-semibold text-blue-800 bg-blue-100 rounded-full mb-4">Events</div>
+                        <h3 class="text-xl font-bold text-blue-900 mb-2">Catering Support</h3>
+                        <p class="text-blue-700 mb-6">Professional kitchen help and service staff to support your catering needs.</p>
+                        <div class="flex items-center justify-between">
+                            <div class="text-blue-800 font-bold text-lg">₹140</div>
+                            <div class="flex items-center">
+                                <div class="flex text-yellow-400 mr-2">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                                <span class="text-blue-700 text-sm">(76)</span>
+                            </div>
+                        </div>
+                        <a href="https://wa.me/+918179867825" class="mt-4 block w-full py-3 text-center text-white font-medium rounded-lg btn-blue-gradient transform hover:scale-105 transition duration-300">
+                            <i class="fab fa-whatsapp mr-2"></i> Book Now
+                        </a>
+                    </div>
+                </div>
+                 <!-- Event Serving -->
+                <div class="service-card bg-white rounded-xl overflow-hidden shadow-lg" data-service="event-serving">
+                    <div class="h-56 bg-cover bg-center" style="background-image: url('assets.svg/freepik__the-style-is-candid-image-photography-with-natural__74524.jpeg')"></div>
+                    <div class="p-6">
+                        <div class="inline-block px-3 py-1 text-xs font-semibold text-blue-800 bg-blue-100 rounded-full mb-4">Events</div>
+                        <h3 class="text-xl font-bold text-blue-900 mb-2">Event Serving</h3>
+                        <p class="text-blue-700 mb-6">Professional serving staff for weddings, parties, corporate events, and special occasions.</p>
+                        <div class="flex items-center justify-between">
+                            <div class="text-blue-800 font-bold text-lg">₹150</div>
+                            <div class="flex items-center">
+                                <div class="flex text-yellow-400 mr-2">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <span class="text-blue-700 text-sm">(156)</span>
+                            </div>
+                        </div>
+                        <a href="https://wa.me/+918179867825" class="mt-4 block w-full py-3 text-center text-white font-medium rounded-lg btn-blue-gradient transform hover:scale-105 transition duration-300">
+                            <i class="fab fa-whatsapp mr-2"></i> Book Now
+                        </a>
+                    </div>
+                </div>
+                
             </div>
             
+            
+            <!-- CTA Section -->
+            <div class="mt-16 bg-light-blue-gradient rounded-2xl p-8 md:p-12 shadow-lg">
+                <div class="flex flex-col md:flex-row items-center justify-between">
+                    <div class="md:w-2/3 mb-6 md:mb-0">
+                        <h3 class="text-2xl md:text-3xl font-bold text-blue-800 mb-3">Ready to experience our services?</h3>
+                        <p class="text-blue-700">Get in touch today for exceptional cleaning and service solutions!</p>
+                    </div>
+                    <div>
+                        <a href="https://wa.me/+918179867825" class="inline-flex items-center px-6 py-3 rounded-lg text-white font-medium btn-blue-gradient shadow-lg transform hover:scale-105 transition duration-300">
+                            <i class="fab fa-whatsapp mr-2 text-xl"></i> Contact Us
+                        </a>
+                    </div>
+                </div>
             </div>
             
-        </section>
+        </div>
+    </section>
 
        
 
@@ -465,45 +705,280 @@
               </div>
             </div>
           </section>
-    <footer class="bg-gray-800 text-white py-8" id="about">
-        <div class="container mx-auto px-4">
-            <div class="flex flex-wrap justify-between">
-                <div class="w-full md:w-1/3 mb-4 md:mb-0">
-                    <h3 class="text-xl font-bold mb-4">About Us</h3>
-                    <p class="text-gray-400">We are a professional cleaning service company dedicated to providing top-notch cleaning solutions for residential and commercial properties. Our team of experienced cleaners uses the latest techniques and eco-friendly products to ensure a clean and healthy environment for our clients.</p>
-                    <h3 class="text-xl font-bold mb-4">Contact Us</h3>
-                    <p class="text-gray-400">123 Cleaning Street, Suite 100<br>Cityville, ST 12345<br>Phone: (123) 456-7890<br>Email: info@ascleaningservice.com</p>
-                </div>
-                <div class="w-full md:w-1/3 mb-4 md:mb-0">
-                    <h3 class="text-xl font-bold mb-4">Follow Us</h3>
-                    <div class="flex space-x-4">
-                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
+          <footer id="about" class="relative pt-16 pb-12 footer-gradient text-white">
+            <!-- Wave SVG Divider -->
+            <div class="footer-wave">
+                <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                    <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="fill-blue-50"></path>
+                </svg>
+            </div>
+            
+            <div class="container mx-auto px-4">
+                <!-- Main Footer Content -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- About Section -->
+                    <div class="lg:col-span-2">
+                        <div class="flex items-center mb-6">
+                            <div class="w-12 h-12 rounded-full bg-blue-400 flex items-center justify-center mr-3">
+                                <i class="fas fa-broom text-white text-xl"></i>
+                            </div>
+                            <h2 class="text-2xl font-bold text-blue-300">AS Serving & Cleaning</h2>
                         </div>
-                        <div class="w-full md:w-1/3 mb-4 md:mb-0">
-                            <h3 class="text-xl font-bold mb-4">Subscribe to Our Newsletter</h3>
-                            <form action="#" method="POST" class="flex">
-                                <input type="email" placeholder="Your Email" class="w-full px-4 py-2 border border-gray-600 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-primary">
-                                <button type="submit" class="bg-primary text-white px-4 py-2 rounded-r-lg hover:bg-blue-700 transition-colors">Subscribe</button>
+                        
+                        <h3 class="text-xl font-bold mb-4 text-blue-200">About Us</h3>
+                        <p class="text-blue-100 mb-6 leading-relaxed">
+                            We are a professional cleaning service company dedicated to providing top-notch cleaning solutions for residential and commercial properties. Our team of experienced cleaners uses the latest techniques and eco-friendly products to ensure a clean and healthy environment for our clients.
+                        </p>
+                        
+                        <h4 class="text-lg font-semibold mb-3 text-blue-200 flex items-center">
+                            <i class="fas fa-medal text-blue-300 mr-2"></i> Our Mission
+                        </h4>
+                        <p class="text-blue-100 mb-6 pl-6 border-l-2 border-blue-400">
+                            To deliver exceptional cleaning services that exceed client expectations while maintaining the highest standards of professionalism and environmental responsibility.
+                        </p>
+                    </div>
+                    
+                    <!-- Contact & Links Section -->
+                    <div>
+                        <h3 class="text-xl font-bold mb-6 text-blue-200 flex items-center">
+                            <i class="fas fa-map-marker-alt text-blue-300 mr-2"></i> Contact Us
+                        </h3>
+                        
+                        <div class="space-y-4 mb-8">
+                            <div class="flex items-start">
+                                <div class="w-10 flex-shrink-0 flex items-center justify-center">
+                                    <i class="fas fa-home text-blue-300"></i>
+                                </div>
+                                <div class="text-blue-100">
+                                    123 Cleaning Street, Suite 100<br>
+                                    Cityville, ST 12345
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="w-10 flex-shrink-0 flex items-center justify-center">
+                                    <i class="fas fa-phone-alt text-blue-300"></i>
+                                </div>
+                                <div class="text-blue-100">
+                                    <a href="tel:+1234567890" class="hover:text-white transition-colors">
+                                        (123) 456-7890
+                                    </a>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="w-10 flex-shrink-0 flex items-center justify-center">
+                                    <i class="fas fa-envelope text-blue-300"></i>
+                                </div>
+                                <div class="text-blue-100">
+                                    <a href="mailto:info@ascleaningservice.com" class="hover:text-white transition-colors">
+                                        info@ascleaningservice.com
+                                    </a>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="w-10 flex-shrink-0 flex items-center justify-center">
+                                    <i class="fas fa-clock text-blue-300"></i>
+                                </div>
+                                <div class="text-blue-100">
+                                    Mon-Fri: 8AM - 6PM<br>
+                                    Sat: 9AM - 4PM
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <h4 class="text-lg font-semibold mb-4 text-blue-200">Quick Links</h4>
+                        <ul class="space-y-2">
+                            <li>
+                                <a href="#home" class="text-blue-100 hover:text-white transition-colors flex items-center">
+                                    <i class="fas fa-chevron-right text-xs mr-2 text-blue-300"></i> Home
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#services" class="text-blue-100 hover:text-white transition-colors flex items-center">
+                                    <i class="fas fa-chevron-right text-xs mr-2 text-blue-300"></i> Services
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#testimonials" class="text-blue-100 hover:text-white transition-colors flex items-center">
+                                    <i class="fas fa-chevron-right text-xs mr-2 text-blue-300"></i> Testimonials
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#about" class="text-blue-100 hover:text-white transition-colors flex items-center">
+                                    <i class="fas fa-chevron-right text-xs mr-2 text-blue-300"></i> About Us
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Newsletter & Social Section -->
+                    <div>
+                        <h3 class="text-xl font-bold mb-6 text-blue-200">Stay Connected</h3>
+                        
+                        <!-- Newsletter -->
+                        <div class="mb-8">
+                            <h4 class="text-lg font-semibold mb-4 text-blue-200 flex items-center">
+                                <i class="fas fa-paper-plane text-blue-300 mr-2"></i> Subscribe to Our Newsletter
+                            </h4>
+                            <p class="text-blue-100 mb-4 text-sm">Get the latest updates, tips and special offers straight to your inbox.</p>
+                            <form action="#" method="POST" class="space-y-3">
+                                <div class="relative">
+                                    <input type="email" placeholder="Your Email Address" class="w-full px-4 py-3 bg-blue-900 bg-opacity-50 rounded-lg border border-blue-700 text-white placeholder-blue-300 newsletter-input focus:outline-none focus:border-blue-400">
+                                </div>
+                                <button type="submit" class="w-full py-3 px-4 btn-blue-gradient text-white font-medium rounded-lg flex items-center justify-center transform hover:scale-105 transition duration-300">
+                                    <i class="fas fa-envelope-open-text mr-2"></i> Subscribe Now
+                                </button>
                             </form>
+                        </div>
+                        
+                        <!-- Social Media -->
+                        <div>
+                            <h4 class="text-lg font-semibold mb-4 text-blue-200 flex items-center">
+                                <i class="fas fa-hashtag text-blue-300 mr-2"></i> Follow Us
+                            </h4>
+                            <div class="flex flex-wrap gap-3">
+                                <a href="#" class="social-icon w-10 h-10 rounded-full bg-blue-800 hover:bg-blue-700 flex items-center justify-center text-blue-200 hover:text-white">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a href="#" class="social-icon w-10 h-10 rounded-full bg-blue-800 hover:bg-blue-700 flex items-center justify-center text-blue-200 hover:text-white">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="#" class="social-icon w-10 h-10 rounded-full bg-blue-800 hover:bg-blue-700 flex items-center justify-center text-blue-200 hover:text-white">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                                <a href="#" class="social-icon w-10 h-10 rounded-full bg-blue-800 hover:bg-blue-700 flex items-center justify-center text-blue-200 hover:text-white">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                                <a href="https://wa.me/+918179867825" class="social-icon w-10 h-10 rounded-full bg-blue-800 hover:bg-blue-700 flex items-center justify-center text-blue-200 hover:text-white">
+                                    <i class="fab fa-whatsapp"></i>
+                                </a>
+                                <a href="#" class="social-icon w-10 h-10 rounded-full bg-blue-800 hover:bg-blue-700 flex items-center justify-center text-blue-200 hover:text-white">
+                                    <i class="fab fa-youtube"></i>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            <div class="text-center mt-8">
-                <p class="text-gray-400">&copy; 2023 AS Serving & Cleaning. All rights reserved.</p>
+                
+                <!-- Certification & Accreditations -->
+                <div class="my-12 border-t border-b border-blue-800 py-8">
+                    <h4 class="text-center text-lg font-semibold mb-6 text-blue-200">Our Certifications & Accreditations</h4>
+                    <div class="flex flex-wrap justify-center items-center gap-8">
+                        <div class="text-center">
+                            <div class="w-16 h-16 mx-auto mb-2 bg-blue-800 rounded-full flex items-center justify-center">
+                                <i class="fas fa-award text-blue-300 text-2xl"></i>
+                            </div>
+                            <p class="text-blue-200 text-sm">Certified Cleaning Professional</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="w-16 h-16 mx-auto mb-2 bg-blue-800 rounded-full flex items-center justify-center">
+                                <i class="fas fa-leaf text-blue-300 text-2xl"></i>
+                            </div>
+                            <p class="text-blue-200 text-sm">Eco-Friendly Certified</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="w-16 h-16 mx-auto mb-2 bg-blue-800 rounded-full flex items-center justify-center">
+                                <i class="fas fa-shield-alt text-blue-300 text-2xl"></i>
+                            </div>
+                            <p class="text-blue-200 text-sm">Safety Certified</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="w-16 h-16 mx-auto mb-2 bg-blue-800 rounded-full flex items-center justify-center">
+                                <i class="fas fa-thumbs-up text-blue-300 text-2xl"></i>
+                            </div>
+                            <p class="text-blue-200 text-sm">Top Rated Service</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
+            
+            <!-- Copyright & Terms Section -->
+            <div class="border-t border-blue-800 pt-6 mt-12">
+                <div class="container mx-auto px-4">
+                    <div class="flex flex-col md:flex-row justify-between items-center">
+                        <div class="mb-4 md:mb-0">
+                            <p class="text-blue-200 text-sm">&copy; 2025 AS Serving & Cleaning. All rights reserved.</p>
+                        </div>
+                        <div class="flex space-x-4 text-sm text-blue-200">
+                            <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+                            <span class="text-blue-700">|</span>
+                            <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
+                            <span class="text-blue-700">|</span>
+                            <a href="#" class="hover:text-white transition-colors">Sitemap</a>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center mt-6 text-xs text-blue-400">
+                        <p>Designed with <i class="fas fa-heart text-red-400"></i> for quality cleaning services</p>
+                    </div>
+                </div>
+            </div>
         </footer>
+        <script>
+            // Mobile menu toggle
+            const menuToggle = document.getElementById('menu-toggle');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            menuToggle.addEventListener('click', () => {
+                const menuOpen = mobileMenu.classList.toggle('translate-x-0');
+                
+                // Toggle burger animation
+                const bars = menuToggle.children;
+                if (menuOpen) {
+                    bars[0].classList.add('rotate-45', 'translate-y-2');
+                    bars[1].classList.add('opacity-0');
+                    bars[2].classList.add('-rotate-45', '-translate-y-2');
+                } else {
+                    bars[0].classList.remove('rotate-45', 'translate-y-2');
+                    bars[1].classList.remove('opacity-0');
+                    bars[2].classList.remove('-rotate-45', '-translate-y-2');
+                }
+            });
+            
+            // Create bubbles animation
+            function createBubbles() {
+                const bubblesContainer = document.querySelector('.bubbles');
+                const bubbleCount = 15;
+                
+                for (let i = 0; i < bubbleCount; i++) {
+                    const bubble = document.createElement('div');
+                    bubble.classList.add('bubble');
+                    
+                    // Random size between 10px and 50px
+                    const size = Math.random() * 40 + 10;
+                    bubble.style.width = ${size}px;
+                    bubble.style.height = ${size}px;
+                    
+                    // Random position along the width
+                    bubble.style.left = ${Math.random() * 100}%;
+                    
+                    // Random delay and duration
+                    const delay = Math.random() * 10;
+                    const duration = Math.random() * 10 + 8;
+                    bubble.style.animationDelay = ${delay}s;
+                    bubble.style.animationDuration = ${duration}s;
+                    
+                    bubblesContainer.appendChild(bubble);
+                }
+            }
+            
+            // Initialize bubbles on load
+            window.addEventListener('load', createBubbles);
+            
+            // Navbar color change on scroll
+            window.addEventListener('scroll', () => {
+                const navbar = document.querySelector('nav');
+                if (window.scrollY > 50) {
+                    navbar.classList.add('bg-white', 'shadow-xl');
+                    navbar.classList.remove('bg-gradient-nav');
+                } else {
+                    navbar.classList.add('bg-gradient-nav');
+                    navbar.classList.remove('bg-white', 'shadow-xl');
+                }
+            });
+        </script>
     <script src="path/to/contact-form-script.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/gsap.min.js"></script>
          <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/ScrollTrigger.min.js"></script>
