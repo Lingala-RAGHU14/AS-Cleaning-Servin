@@ -1,3 +1,5 @@
+
+
 * {
     margin: 0;
     padding: 0;
@@ -235,8 +237,8 @@ body {
 
 
 /* Hero Section */
-.hero {
-    background: linear-gradient(135deg, rgba(52, 152, 219, 0.9), rgba(41, 128, 185, 0.9)), url('/api/placeholder/1920/1080') center/cover no-repeat;
+.hero-image {
+    background: linear-gradient(135deg, rgba(52, 152, 219, 0.9), rgba(41, 128, 185, 0.9)), url("assets.svg/aboutus.jpg") center/cover no-repeat;
     min-height: 90vh;
     padding: 0 5%;
     display: flex;
