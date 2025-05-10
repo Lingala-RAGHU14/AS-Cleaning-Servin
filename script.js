@@ -154,93 +154,93 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     
     // Mobile navigation toggle
-    const burger = document.querySelector('.burger');
-    const nav = document.querySelector('.nav-links');
-    const navLinks = document.querySelectorAll('.nav-links li');
+    // const burger = document.querySelector('.burger');
+    // const nav = document.querySelector('.nav-links');
+    // const navLinks = document.querySelectorAll('.nav-links li');
     
-    burger.addEventListener('click', () => {
-        // Toggle Nav
-        nav.classList.toggle('nav-active');
+    // burger.addEventListener('click', () => {
+    //     // Toggle Nav
+    //     nav.classList.toggle('nav-active');
         
-        // Animate Links
-        navLinks.forEach((link, index) => {
-            if (link.style.animation) {
-                link.style.animation = '';
-            } else {
-                link.style.animation = `navLinkFade 0.5s ease forwards ${index / 7 + 0.3}s`;
-            }
-        });
+    //     // Animate Links
+    //     navLinks.forEach((link, index) => {
+    //         if (link.style.animation) {
+    //             link.style.animation = '';
+    //         } else {
+    //             link.style.animation = `navLinkFade 0.5s ease forwards ${index / 7 + 0.3}s`;
+    //         }
+    //     });
         
-        // Burger Animation
-        burger.classList.toggle('toggle');
+    //     // Burger Animation
+    //     burger.classList.toggle('toggle');
         
-        // Use GSAP for burger animation
-        if (burger.classList.contains('toggle')) {
-            gsap.to('.line1', { rotation: -45, y: 8, duration: 0.3 });
-            gsap.to('.line2', { opacity: 0, duration: 0.3 });
-            gsap.to('.line3', { rotation: 45, y: -8, duration: 0.3 });
-        } else {
-            gsap.to('.line1', { rotation: 0, y: 0, duration: 0.3 });
-            gsap.to('.line2', { opacity: 1, duration: 0.3 });
-            gsap.to('.line3', { rotation: 0, y: 0, duration: 0.3 });
-        }
-    });
+    //     // Use GSAP for burger animation
+    //     if (burger.classList.contains('toggle')) {
+    //         gsap.to('.line1', { rotation: -45, y: 8, duration: 0.3 });
+    //         gsap.to('.line2', { opacity: 0, duration: 0.3 });
+    //         gsap.to('.line3', { rotation: 45, y: -8, duration: 0.3 });
+    //     } else {
+    //         gsap.to('.line1', { rotation: 0, y: 0, duration: 0.3 });
+    //         gsap.to('.line2', { opacity: 1, duration: 0.3 });
+    //         gsap.to('.line3', { rotation: 0, y: 0, duration: 0.3 });
+    //     }
+    // });
     
-    // Scroll animation for navbar
-    window.addEventListener('scroll', () => {
-        const navbar = document.querySelector('.navbar');
+    // // Scroll animation for navbar
+    // window.addEventListener('scroll', () => {
+    //     const navbar = document.querySelector('.navbar');
         
-        if (window.scrollY > 50) {
-            gsap.to(navbar, {
-                padding: '1rem 5%',
-                background: 'linear-gradient(135deg, #b3e5fc 0%, #81d4fa 100%)',
-                boxShadow: '0 5px 15px rgba(0, 0, 0, 0.15)',
-                duration: 0.3
-            });
+    //     if (window.scrollY > 50) {
+    //         gsap.to(navbar, {
+    //             padding: '1rem 5%',
+    //             background: 'linear-gradient(135deg, #b3e5fc 0%, #81d4fa 100%)',
+    //             boxShadow: '0 5px 15px rgba(0, 0, 0, 0.15)',
+    //             duration: 0.3
+    //         });
             
-            // Make bubbles more transparent on scroll
-            gsap.to('.bubble', {
-                opacity: 0.4,
-                duration: 0.3
-            });
-        } else {
-            gsap.to(navbar, {
-                padding: '1.5rem 5%',
-                background: 'linear-gradient(135deg, #e0f7fa 0%, #bbdefb 100%)',
-                boxShadow: '0 2px 10px rgba(0, 0, 0, 0.1)',
-                duration: 0.3
-            });
+    //         // Make bubbles more transparent on scroll
+    //         gsap.to('.bubble', {
+    //             opacity: 0.4,
+    //             duration: 0.3
+    //         });
+    //     } else {
+    //         gsap.to(navbar, {
+    //             padding: '1.5rem 5%',
+    //             background: 'linear-gradient(135deg, #e0f7fa 0%, #bbdefb 100%)',
+    //             boxShadow: '0 2px 10px rgba(0, 0, 0, 0.1)',
+    //             duration: 0.3
+    //         });
             
-            // Restore bubble opacity
-            gsap.to('.bubble', {
-                opacity: 0.7,
-                duration: 0.3
-            });
-        }
-    });
+    //         // Restore bubble opacity
+    //         gsap.to('.bubble', {
+    //             opacity: 0.7,
+    //             duration: 0.3
+    //         });
+    //     }
+    // });
     
-    // Shimmering water effect for cleaning theme
-    const shimmerTimeline = gsap.timeline({repeat: -1});
-    shimmerTimeline.to('.navbar', {
-        backgroundImage: 'linear-gradient(135deg, #e0f7fa 0%, #b3e5fc 50%, #bbdefb 100%)',
-        duration: 3,
-        ease: 'sine.inOut'
-    });
-    shimmerTimeline.to('.navbar', {
-        backgroundImage: 'linear-gradient(135deg, #bbdefb 0%, #b3e5fc 50%, #e0f7fa 100%)',
-        duration: 3,
-        ease: 'sine.inOut'
-    });
+    // // Shimmering water effect for cleaning theme
+    // const shimmerTimeline = gsap.timeline({repeat: -1});
+    // shimmerTimeline.to('.navbar', {
+    //     backgroundImage: 'linear-gradient(135deg, #e0f7fa 0%, #b3e5fc 50%, #bbdefb 100%)',
+    //     duration: 3,
+    //     ease: 'sine.inOut'
+    // });
+    // shimmerTimeline.to('.navbar', {
+    //     backgroundImage: 'linear-gradient(135deg, #bbdefb 0%, #b3e5fc 50%, #e0f7fa 100%)',
+    //     duration: 3,
+    //     ease: 'sine.inOut'
+    // });
 
-    // Wait for DOM to be fully loaded
+    // // Wait for DOM to be fully loaded
 
     
-    // Add a small delay to ensure all elements are properly loaded
-    setTimeout(function() {
-        initAnimations();
-    }, 100);
+    // // Add a small delay to ensure all elements are properly loaded
+    // setTimeout(function() {
+    //     initAnimations();
+    // }, 100);
     
-    function initAnimations() {
+    // function initAnimations() {
     
     // Keep the existing navbar animations (if any)
     // Focus on adding scroll animations to other sections
@@ -609,11 +609,72 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 }
-}
+
 );
 // Testimonial Carousel Implementation
-// Initialize GSAP and ScrollTrigger
+// Initialize GSAP and ScrollTrigger 
+// gsap.registerPlugin(ScrollTrigger);
 
+            // Mobile menu toggle
+           // Mobile menu toggle
+const menuToggle = document.getElementById('menu-toggle');
+const mobileMenu = document.getElementById('mobile-menu');
+
+menuToggle.addEventListener('click', () => {
+    // Toggle the visibility of the mobile menu
+    mobileMenu.classList.toggle('translate-x-0');
+    mobileMenu.classList.toggle('translate-x-full');
+
+    // Toggle burger animation
+    const bars = menuToggle.children;
+    bars[0].classList.toggle('rotate-45');
+    bars[0].classList.toggle('translate-y-2');
+    bars[1].classList.toggle('opacity-0');
+    bars[2].classList.toggle('-rotate-45');
+    bars[2].classList.toggle('-translate-y-2');
+});
+            
+// Create bubbles animation
+                 function createBubbles() {
+                     const bubblesContainer = document.querySelector('.bubbles');
+                     const bubbleCount = 15;
+                
+                for (let i = 0; i < bubbleCount; i++) {
+                    const bubble = document.createElement('div');
+                    bubble.classList.add('bubble');
+                    
+                    // Random size between 10px and 50px
+                    const size = Math.random() * 40 + 10;
+                    bubble.style.width = `${size}px`;
+                    bubble.style.height = `${size}px`;
+                    
+                    // Random position along the width
+                    bubble.style.left = `${Math.random() * 100}%`;
+                    
+                    // Random delay and duration
+                    const delay = Math.random() * 10;
+                    const duration = Math.random() * 10 + 8;
+                    bubble.style.animationDelay = `${delay}s`;
+                    bubble.style.animationDuration = `${duration}s`;
+                    
+                    bubblesContainer.appendChild(bubble);
+                }
+            
+            // Initialize bubbles on load
+            window.addEventListener('load', createBubbles);
+            
+            // Navbar color change on scroll
+            window.addEventListener('scroll', () => {
+                const navbar = document.querySelector('nav');
+                if (window.scrollY > 50) {
+                    navbar.classList.add('bg-white', 'shadow-xl');
+                    navbar.classList.remove('bg-gradient-nav');
+                } else {
+                    navbar.classList.add('bg-gradient-nav');
+                    navbar.classList.remove('bg-white', 'shadow-xl');
+                }
+            });
+        }
 
 
 
