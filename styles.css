@@ -1,3 +1,4 @@
+
 .contact-section {
     /* padding: 100px 0; */
     background-color: #f8fdff;
@@ -626,3 +627,47 @@
               display: flex;
               align-items: center;
           }
+/* WhatsApp button styling */
+.whatsapp-option {
+    margin-top: 15px;
+    padding: 10px;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.whatsapp-option p {
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.whatsapp-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 15px;
+    background-color: #25D366;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+
+.whatsapp-button:hover {
+    background-color: #1da851;
+}
+
+.whatsapp-button i {
+    margin-right: 8px;
+    font-size: 16px;
+}
+
+.success-message {
+    padding: 15px;
+    background-color: #d4edda;
+    border: 1px solid #c3e6cb;
+    border-radius: 5px;
+    color: #155724;
+    margin-bottom: 15px;
+}

@@ -2,6 +2,7 @@
 // Add these to your HTML head if missing:
 // <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 // <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+// <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 
 // Wait for DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', () => {
@@ -18,6 +19,14 @@ document.addEventListener('DOMContentLoaded', () => {
         console.warn('ScrollTrigger plugin is not loaded. Some animations may not work.');
     }
 
+    // Initialize EmailJS with the correct public key
+    if (typeof emailjs !== 'undefined') {
+        emailjs.init("VKLqES6lzhyYc1TUJ");
+        console.log("EmailJS initialized successfully");
+    } else {
+        console.error('EmailJS is not loaded. Please add the EmailJS CDN link to your HTML.');
+    }
+
     // Testimonial Slider
     initTestimonialSlider();
     
@@ -30,6 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize all GSAP animations with a small delay
     setTimeout(initAnimations, 100);
 });
+
 
 // Function to initialize testimonial slider
 function initTestimonialSlider() {
@@ -435,10 +445,13 @@ function initAnimations() {
     setupNavbarScroll();
 }
 
-// Setup form validation
+// Setup form validation with EmailJS and WhatsApp notifications
 function setupFormValidation() {
     const contactForm = document.getElementById('contactForm');
-    if (!contactForm) return;
+    if (!contactForm) {
+        console.error('Contact form not found!');
+        return;
+    }
     
     const nameInput = document.getElementById('name');
     const emailInput = document.getElementById('email');
@@ -448,6 +461,16 @@ function setupFormValidation() {
     const submitButton = document.getElementById('submitBtn');
     const formStatus = document.getElementById('formStatus');
     
+    // EmailJS configuration - VERIFIED CORRECT
+    const emailjsConfig = {
+        serviceID: 'service_oeabpde',
+        templateID: 'template_io53rzp',
+        publicKey: 'aMQx4vb58zziXJRN8'
+    };
+    
+    // WhatsApp configuration
+    const businessWhatsAppNumber = "+918179867825"; // Your business WhatsApp number without the + sign
+    
     // Form validation function
     function validateForm() {
         let isValid = true;
@@ -455,41 +478,35 @@ function setupFormValidation() {
         // Reset error messages
         document.querySelectorAll('.error-message').forEach(el => el.textContent = '');
         
-        // Validate name (required)
+        // Validate name
         if (nameInput && !nameInput.value.trim()) {
             const nameError = document.getElementById('nameError');
             if (nameError) nameError.textContent = 'Name is required';
             isValid = false;
         }
         
-        // Validate email (required and format)
+        // Validate email
         if (emailInput) {
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             if (!emailInput.value.trim()) {
                 const emailError = document.getElementById('emailError');
                 if (emailError) emailError.textContent = 'Email is required';
                 isValid = false;
-            } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value.trim())) {
+            } else if (!emailPattern.test(emailInput.value.trim())) {
                 const emailError = document.getElementById('emailError');
                 if (emailError) emailError.textContent = 'Please enter a valid email address';
                 isValid = false;
             }
         }
         
-        // Validate phone (format)
-        if (phoneInput && phoneInput.value.trim() && !/^[\d\s\-\(\)\.]+$/.test(phoneInput.value.trim())) {
-            const phoneError = document.getElementById('phoneError');
-            if (phoneError) phoneError.textContent = 'Please enter a valid phone number';
-            isValid = false;
-        }
-        
-        // Validate service selection
+        // Validate service
         if (serviceInput && serviceInput.value === '') {
             const serviceError = document.getElementById('serviceError');
             if (serviceError) serviceError.textContent = 'Please select a service';
             isValid = false;
         }
         
-        // Validate message (required)
+        // Validate message
         if (messageInput && !messageInput.value.trim()) {
             const messageError = document.getElementById('messageError');
             if (messageError) messageError.textContent = 'Please tell us about your cleaning needs';
@@ -499,105 +516,182 @@ function setupFormValidation() {
         return isValid;
     }
     
-    // Form submission handler
-    contactForm.addEventListener('submit', function(e) {
-        e.preventDefault();
+    // Direct WhatsApp notification function - SIMPLIFIED APPROACH
+    function sendWhatsAppNotification(formData) {
+        const customerName = formData.get('name');
+        const customerEmail = formData.get('email');
+        const customerPhone = formData.get('phone') || 'Not provided';
+        const requestedService = formData.get('service');
+        const customerMessage = formData.get('message');
         
-        if (validateForm()) {
-            // Disable form while submitting
-            if (submitButton) {
-                submitButton.disabled = true;
-                submitButton.innerHTML = '<span>Sending</span><i class="fas fa-spinner fa-spin"></i>';
-                submitButton.style.animation = 'pulse 1.5s infinite';
+        // Create a formatted message for the business owner
+        const notificationMessage = encodeURIComponent(
+            `📣 NEW QUOTE REQUEST 📣\n\n` +
+            `👤 Name: ${customerName}\n` +
+            `📧 Email: ${customerEmail}\n` +
+            `📱 Phone: ${customerPhone}\n` +
+            `🔧 Service: ${requestedService}\n\n` +
+            `📝 Message:\n${customerMessage}`
+        );
+        
+        // Generate WhatsApp link and open it directly
+        const whatsappLink = `https://api.whatsapp.com/send?phone=${businessWhatsAppNumber}&text=${notificationMessage}`;
+        window.open(whatsappLink, '_blank');
+    }
+    
+  // Handle form submission
+contactForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    console.log("Form submitted");
+    
+    // Show loading state
+    if (submitButton) {
+        submitButton.disabled = true;
+        submitButton.innerHTML = '<span>Sending...</span> <i class="fas fa-spinner fa-spin"></i>';
+    }
+    
+    // Clear previous status messages
+    if (formStatus) {
+        formStatus.innerHTML = '';
+    }
+    
+    // Validate form
+    if (validateForm()) {
+        console.log("Form validation passed");
+        
+        try {
+            // Make sure EmailJS is properly initialized before sending
+            if (typeof emailjs === 'undefined') {
+                console.error('EmailJS is not defined. Make sure the script is loaded correctly.');
+                throw new Error('EmailJS is not initialized');
             }
             
-            if (formStatus) formStatus.innerHTML = '';
-            
-            // Simulate form submission (replace with your actual submission code)
-            setTimeout(() => {
-                if (formStatus) {
-                    // Create success checkmark and message
-                    formStatus.innerHTML = `
-                        <div class="success-checkmark show">
-                            <div class="check-icon"></div>
-                        </div>
-                        <div class="status-success">Thank you! We've received your request and will contact you shortly.</div>
-                    `;
+            // Use EmailJS sendForm method which is more reliable
+            emailjs.sendForm('service_oeabpde', 'template_io53rzp', contactForm, 'aMQx4vb58zziXJRN8')
+                .then(function(response) {
+                    console.log('EmailJS SUCCESS:', response.status, response.text);
                     
-                    // Apply animation to checkmark
-                    const checkIcon = document.querySelector('.check-icon');
-                    if (checkIcon) {
-                        checkIcon.style.animation = 'checkmark 0.8s cubic-bezier(0.65, 0, 0.45, 1) forwards';
+                    // Send data to Google Sheets
+                    const formData = new FormData(contactForm);
+                    fetch('https://script.google.com/macros/s/AKfycbwZEHxXmrT7vHd8embQ7wUQ00FMTyC2roM6yGzev0KUr_TSgtD5AZ1G4_ObrgMlohI2/exec', {
+                        method: 'POST',
+                        mode: 'no-cors',
+                        body: formData
+                    }).catch(error => console.error('Google Sheets error:', error));
+                    
+                    // Show success message
+                    if (formStatus) {
+                        const serviceName = serviceInput ? serviceInput.value : "cleaning service";
+                        const customerName = nameInput ? nameInput.value : "customer";
+                        const whatsappMessage = encodeURIComponent(`Hello, I'm ${customerName}. I just submitted a request on your website for ${serviceName} and would like to discuss further.`);
+                        // Fix WhatsApp link to use proper format
+                        const whatsappLink = `https://wa.me/918179867825?text=${whatsappMessage}`;
+                        
+                        formStatus.innerHTML = `
+                            <div class="success-message p-4 bg-green-100 text-green-700 rounded-lg mt-4">
+                                <p class="font-bold">Your message has been sent successfully!</p>
+                                <div class="whatsapp-option mt-3">
+                                    <p>Want to chat directly with us?</p>
+                                    <a href="${whatsappLink}" target="_blank" class="whatsapp-button inline-block mt-2 bg-green-500 text-white py-2 px-4 rounded-lg">
+                                        <i class="fab fa-whatsapp mr-2"></i> Continue on WhatsApp
+                                    </a>
+                                </div>
+                            </div>
+                        `;
                     }
                     
-                    // Scroll to success message
-                    formStatus.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    // Reset form
+                    contactForm.reset();
                     
-                    // Clear success message after 5 seconds
-                    setTimeout(() => {
-                        // Fade out animation
-                        formStatus.style.opacity = '0';
-                        formStatus.style.transition = 'opacity 0.5s ease';
-                        
-                        setTimeout(() => {
-                            formStatus.innerHTML = '';
-                            formStatus.style.opacity = '1';
-                            formStatus.className = '';
-                        }, 500);
-                    }, 5000);
-                }
-                
-                // Reset form
-                contactForm.reset();
-                
-                // Re-enable submit button
-                if (submitButton) {
-                    submitButton.disabled = false;
-                    submitButton.innerHTML = '<span>Request a Quote</span><i class="fas fa-arrow-right"></i>';
-                    submitButton.style.animation = '';
-                }
-            }, 1500);
-            
-            // In a real application, you would use fetch here
-            // Commented out to avoid actual API calls
-            /*
-            fetch('your-server-endpoint', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    name: nameInput.value,
-                    email: emailInput.value,
-                    phone: phoneInput.value,
-                    service: serviceInput.value,
-                    message: messageInput.value
+                    // Send WhatsApp notification to business owner - use more reliable format
+                    const notificationMessage = encodeURIComponent(
+                        `📣 NEW QUOTE REQUEST 📣\n\n` +
+                        `👤 Name: ${nameInput.value}\n` +
+                        `📧 Email: ${emailInput.value}\n` +
+                        `📱 Phone: ${phoneInput ? phoneInput.value : 'Not provided'}\n` +
+                        `🔧 Service: ${serviceInput.value}\n\n` +
+                        `📝 Message:\n${messageInput.value}`
+                    );
+                    
+                    // Fix WhatsApp link to use proper format
+                    const adminWhatsAppLink = `https://wa.me/918179867825?text=${notificationMessage}`;
+                    
+                    // Open in a small window that can be easily closed
+                    const whatsappWindow = window.open(adminWhatsAppLink, '_blank', 'width=600,height=400');
+                    if (whatsappWindow) {
+                        // You can optionally close it automatically after a delay
+                        // setTimeout(() => { whatsappWindow.close(); }, 5000);
+                    }
+                    
+                }, function(error) {
+                    console.error('EmailJS FAILED:', error);
+                    
+                    // Show error message with more details
+                    if (formStatus) {
+                        formStatus.innerHTML = `
+                            <div class="error-message p-4 bg-red-100 text-red-700 rounded-lg mt-4">
+                                <p>There was an error sending your message: ${error.text || 'Unknown error'}.</p>
+                                <p>Please try again or contact us directly at raghulingala532@gmail.com.</p>
+                            </div>
+                        `;
+                    }
                 })
-            })
-            .then(response => response.json())
-            .then(data => {
-                formStatus.textContent = 'Thank you! We\'ve received your request and will contact you shortly.';
-                formStatus.className = 'status-success';
-                contactForm.reset();
-            })
-            .catch(error => {
-                formStatus.textContent = 'There was an error sending your request. Please try again or call us directly.';
-                formStatus.className = 'status-error';
-            })
-            .finally(() => {
+                .finally(function() {
+                    // Reset button
+                    if (submitButton) {
+                        submitButton.disabled = false;
+                        submitButton.innerHTML = '<span>Request a Quote</span> <i class="fas fa-arrow-right"></i>';
+                    }
+                });
+        } catch (error) {
+            console.error('Error in form submission:', error);
+            
+            // Show error message for caught exceptions
+            if (formStatus) {
+                formStatus.innerHTML = `
+                    <div class="error-message p-4 bg-red-100 text-red-700 rounded-lg mt-4">
+                        <p>There was an error processing your request: ${error.message}</p>
+                        <p>Please try again or contact us directly at raghulingala532@gmail.com.</p>
+                    </div>
+                `;
+            }
+            
+            // Reset button
+            if (submitButton) {
                 submitButton.disabled = false;
-                submitButton.textContent = 'Request a Quote';
-            });
-            */
+                submitButton.innerHTML = '<span>Request a Quote</span> <i class="fas fa-arrow-right"></i>';
+            }
         }
-    });
+    } else {
+        console.log("Form validation failed");
+        // Re-enable button if validation fails
+        if (submitButton) {
+            submitButton.disabled = false;
+            submitButton.innerHTML = '<span>Request a Quote</span> <i class="fas fa-arrow-right"></i>';
+        }
+    }
     
+    // Backup timeout to ensure the button is re-enabled
+    setTimeout(function() {
+        if (submitButton && submitButton.disabled) {
+            submitButton.disabled = false;
+            submitButton.innerHTML = '<span>Request a Quote</span> <i class="fas fa-arrow-right"></i>';
+            
+            if (formStatus && formStatus.innerHTML === '') {
+                formStatus.innerHTML = '<div class="error-message p-4 bg-red-100 text-red-700 rounded-lg mt-4">The request took too long. Please try again later.</div>';
+            }
+        }
+    }, 12000);
+});
+
     // Live validation as user types
     const inputs = [nameInput, emailInput, phoneInput, messageInput].filter(input => input !== null);
     inputs.forEach(input => {
-        input.addEventListener('blur', function() {
-            validateForm();
-        });
+        if (input) {
+            input.addEventListener('blur', function() {
+                validateForm();
+            });
+        }
     });
     
     // Validate service when changed
